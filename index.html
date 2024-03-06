@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Pendorsement</title>
+  </head>
+  <body>
+    <div id="container">
+      <img src="./assets/freddie.png" alt="Iconic Freddie Mercury image" />
+      <h1>We are the Champions</h1>
+      <div id="endorsement">
+        <textarea
+          name="endorsement-text"
+          id="endorsement-text"
+          placeholder="Write your endorsement here..."
+        ></textarea>
+        <div id="to-from">
+          <input type="text" name="from" id="from" placeholder="From" />
+          <input type="text" name="to" id="to" placeholder="To" />
+        </div>
+        <button id="publish">Publish</button>
+        <h2>- Endorsements -</h2>
+        <div id="endorsement-container">
+          <h3 id="endorsement-to">To Leanne</h3>
+          <p id="endorsement-message">
+            Leanne! Thank you so much for helping me with the March accounting.
+            Saved so much time because of you! 💜 Frode
+          </p>
+          <div id="endorsement-footer">
+            <h3 id="endorsement-from">From Frode</h3>
+            <p id="likes">🖤 0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template id="endorsement-template">
+      <div id="endorsement-container">
+        <h3 id="endorsement-to"></h3>
+        <p id="endorsement-message"></p>
+        <div id="endorsement-footer">
+          <h3 id="endorsement-from"></h3>
+          <p id="likes"></p>
+        </div>
+      </div>
+    </template>
+  </body>
+</html>
