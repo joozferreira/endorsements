@@ -14,11 +14,32 @@ const appSettings = {
     "https://endorsements-b3db0-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-const app = initializeApp(databaseURL);
+const app = initializeApp(appSettings);
 const database = getDatabase(app);
 const endorsementListInDB = ref(database, "endorsementList");
 
 const publishBtn = document.getElementById("publish");
 const textEndorsement = document.getElementById("endorsement-text");
-const from = document.getElementById("from");
-const to = document.getElementById("to");
+const fromEndorsement = document.getElementById("from");
+const toEndorsement = document.getElementById("to");
+const likesEndorsement = document.getElementById("likes");
+let endorsementDetails = {};
+
+publishBtn.addEventListener("click", function () {
+  endorsementDetails = {
+    text: textEndorsement.value,
+    from: fromEndorsement.value,
+    to: toEndorsement.value,
+    likes: 0,
+  };
+
+  push(endorsementListInDB, endorsementDetails);
+
+  clearInputFields();
+});
+
+function clearInputFields() {
+  textEndorsement.value = "";
+  fromEndorsement.value = "";
+  toEndorsement.value = "";
+}
