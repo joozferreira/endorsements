@@ -80,10 +80,19 @@ h2 {
   margin-bottom: 15px;
 }
 
+#endorsement-section {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  color: #fff;
+}
+
 #endorsement-container {
   background-color: #ffffff;
   padding: 13px 17px;
   font-size: 14px;
+  color: #000;
 }
 
 #endorsement-message {
@@ -95,11 +104,4 @@ h2 {
 #endorsement-footer {
   display: flex;
   justify-content: space-between;
-}
-
-#endorsement-section {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-  flex-direction: column;
 }
