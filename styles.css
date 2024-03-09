@@ -18,6 +18,12 @@ body {
   margin: 50px auto;
 }
 
+#head-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 320px;
+}
+
 img {
   width: 90px;
   margin: 0 auto 1em auto;
@@ -93,6 +99,7 @@ h2 {
   padding: 13px 17px;
   font-size: 14px;
   color: #000;
+  max-width: 320px;
 }
 
 #endorsement-message {
