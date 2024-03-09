@@ -26,6 +26,13 @@ const fromEndorsement = document.getElementById("from");
 const toEndorsement = document.getElementById("to");
 const endorsementSection = document.getElementById("endorsement-section");
 let endorsementDetails = {};
+let userLikes = [];
+const likesFromLocalStorage = JSON.parse(localStorage.getItem("userLikes"));
+
+if (likesFromLocalStorage) {
+  userLikes = likesFromLocalStorage;
+  console.log(userLikes);
+}
 
 // Capture of endorsement from user and push to DB
 publishBtn.addEventListener("click", function () {
@@ -44,14 +51,11 @@ publishBtn.addEventListener("click", function () {
 // Update of endorsement list anytime any change/new endorsement is created
 onValue(endorsementListInDB, function (snapshot) {
   if (snapshot.exists()) {
-    const endorsementArr = Object.values(snapshot.val());
+    const endorsementArr = Object.entries(snapshot.val());
 
     clearEndorsementSection();
 
-    console.log(endorsementArr);
-
     endorsementArr.forEach((item) => {
-      console.log(item);
       createEndorsement(item);
     });
   } else {
@@ -76,12 +80,32 @@ function createEndorsement(endorsement) {
   if ("content" in document.createElement("template")) {
     const template = document.getElementById("endorsement-template");
     const clone = template.content.cloneNode(true);
-    clone.getElementById("endorsement-to").textContent = endorsement.to;
-    clone.getElementById("endorsement-message").textContent = endorsement.text;
-    clone.getElementById("endorsement-from").textContent = endorsement.from;
+    clone.getElementById("endorsement-to").textContent = endorsement[1].to;
+    clone.getElementById("endorsement-message").textContent =
+      endorsement[1].text;
+    clone.getElementById("endorsement-from").textContent = endorsement[1].from;
     clone.getElementById(
       "endorsement-likes"
-    ).textContent = `🖤 ${endorsement.likes}`;
+    ).textContent = `🖤 ${endorsement[1].likes}`;
+
+    clone.getElementById("endorsement-likes").addEventListener("click", () => {
+      const key = endorsement[0];
+      if (userLikes.includes(key)) {
+        console.log("here");
+        endorsement[1].likes -= 1;
+        update(ref(database, `endorsementList/${key}`), endorsement[1]);
+        userLikes.splice(userLikes.indexOf(key), 1);
+      } else {
+        endorsement[1].likes += 1;
+        update(
+          ref(database, `endorsementList/${endorsement[0]}`),
+          endorsement[1]
+        );
+        userLikes.push(endorsement[0]);
+      }
+      localStorage.setItem("userLikes", JSON.stringify(userLikes));
+    });
+
     endorsementSection.appendChild(clone);
   }
 }
