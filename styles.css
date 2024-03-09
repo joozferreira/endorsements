@@ -84,7 +84,7 @@ h2 {
   display: flex;
   gap: 5px;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: column-reverse;
   color: #fff;
 }
 
