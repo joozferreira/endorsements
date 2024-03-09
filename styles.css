@@ -96,3 +96,10 @@ h2 {
   display: flex;
   justify-content: space-between;
 }
+
+#endorsement-section {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
